@@ -1,3 +1,13 @@
+---
+type: concept
+title: 中枢线与k0/k体系
+tags: [缠论, 摩尔缠论, 中枢线, k0-k体系, 线段中枢]
+sources:
+  - wiki/courses/课02-本质线段之中枢线.md
+  - wiki/courses/课04-线段中枢之形成确认.md
+  - wiki/courses/课05-中枢取值.md
+updated: 2026-05-07
+---
 # 中枢线与 k0/k 体系
 
 ## 元信息

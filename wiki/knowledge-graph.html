@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>摩尔缠论 · 知识图谱</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'JetBrains Mono', 'Noto Sans SC', monospace;
+      background: #020617;
+      min-height: 100vh;
+      padding: 2rem;
+      color: white;
+    }
+    .container { max-width: 1400px; margin: 0 auto; }
+    .header { margin-bottom: 1.5rem; }
+    .header-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; }
+    .pulse-dot { width: 12px; height: 12px; background: #22d3ee; border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    h1 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.025em; }
+    .subtitle { color: #94a3b8; font-size: 0.875rem; margin-left: 1.75rem; }
+    .diagram-container {
+      background: rgba(15, 23, 42, 0.5);
+      border-radius: 1rem;
+      border: 1px solid #1e293b;
+      padding: 1.5rem;
+      overflow-x: auto;
+    }
+    svg { width: 100%; min-width: 1100px; display: block; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .card {
+      background: rgba(15, 23, 42, 0.5);
+      border-radius: 0.75rem;
+      border: 1px solid #1e293b;
+      padding: 1.25rem;
+    }
+    .card-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; }
+    .card-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .card-dot.cyan { background: #22d3ee; }
+    .card-dot.emerald { background: #34d399; }
+    .card-dot.violet { background: #a78bfa; }
+    .card-dot.amber { background: #fbbf24; }
+    .card-dot.rose { background: #fb7185; }
+    .card h3 { font-size: 0.875rem; font-weight: 600; }
+    .card ul { list-style: none; color: #94a3b8; font-size: 0.75rem; }
+    .card li { margin-bottom: 0.375rem; }
+    .footer { text-align: center; margin-top: 1.5rem; color: #475569; font-size: 0.75rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="header-row">
+        <div class="pulse-dot"></div>
+        <h1>摩尔缠论 · 股票资料库知识图谱</h1>
+      </div>
+      <p class="subtitle">53课 · 三阶段递进 · 七维知识体系 — 最后更新 2026-05-02</p>
+    </div>
+
+    <div class="diagram-container">
+      <svg viewBox="0 0 1350 920">
+        <defs>
+          <marker id="arrow-cyan" markerWidth="8" markerHeight="6" refX="7.5" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#22d3ee"/>
+          </marker>
+          <marker id="arrow-em" markerWidth="8" markerHeight="6" refX="7.5" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#34d399"/>
+          </marker>
+          <marker id="arrow-vi" markerWidth="8" markerHeight="6" refX="7.5" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#a78bfa"/>
+          </marker>
+          <marker id="arrow-am" markerWidth="8" markerHeight="6" refX="7.5" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#fbbf24"/>
+          </marker>
+          <marker id="arrow-ro" markerWidth="8" markerHeight="6" refX="7.5" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#fb7185"/>
+          </marker>
+          <marker id="arrow-sl" markerWidth="8" markerHeight="6" refX="7.5" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#94a3b8"/>
+          </marker>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+          </pattern>
+          <filter id="glow-cyan">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!-- Background -->
+        <rect width="100%" height="100%" fill="url(#grid)"/>
+
+        <!-- ===== ROOT NODE ===== -->
+        <rect x="455" y="30" width="440" height="56" rx="8" fill="rgba(8, 51, 68, 0.5)" stroke="#22d3ee" stroke-width="2" filter="url(#glow-cyan)"/>
+        <text x="675" y="53" fill="#22d3ee" font-size="14" font-weight="700" text-anchor="middle">摩尔缠论 · 高三课程体系</text>
+        <text x="675" y="73" fill="#94a3b8" font-size="10" text-anchor="middle">53 课 ｜ 三阶段递进 ｜ 七维知识库</text>
+
+        <!-- Arrows from root to three stages -->
+        <line x1="500" y1="86" x2="230" y2="130" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+        <line x1="675" y1="86" x2="675" y2="130" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-em)"/>
+        <line x1="850" y1="86" x2="1120" y2="130" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow-vi)"/>
+
+        <!-- ===== STAGE 1: 一阶段 ===== -->
+        <rect x="30" y="130" width="400" height="32" rx="6" fill="rgba(8, 51, 68, 0.3)" stroke="#22d3ee" stroke-width="1.5"/>
+        <text x="230" y="151" fill="#22d3ee" font-size="11" font-weight="700" text-anchor="middle">一阶段 · 本质线段 (课 1–15)</text>
+
+        <!-- S1 Boxes -->
+        <rect x="45" y="178" width="370" height="42" rx="5" fill="rgba(8, 51, 68, 0.2)" stroke="#22d3ee" stroke-width="1"/>
+        <text x="60" y="196" fill="#e2e8f0" font-size="10" font-weight="600">中枢线 / k0–k 体系</text>
+        <text x="60" y="211" fill="#64748b" font-size="8">课2 — 正侧 · 反突破 · 配对 · 刷新</text>
+        <text x="400" y="196" fill="#475569" font-size="8" text-anchor="end">→ concept</text>
+
+        <rect x="45" y="232" width="370" height="42" rx="5" fill="rgba(8, 51, 68, 0.2)" stroke="#22d3ee" stroke-width="1"/>
+        <text x="60" y="250" fill="#e2e8f0" font-size="10" font-weight="600">起手三式</text>
+        <text x="60" y="265" fill="#64748b" font-size="8">课3 — 反正两穿 · 三笔 · 5k 重叠</text>
+
+        <rect x="45" y="286" width="370" height="42" rx="5" fill="rgba(8, 51, 68, 0.2)" stroke="#22d3ee" stroke-width="1"/>
+        <text x="60" y="304" fill="#e2e8f0" font-size="10" font-weight="600">黑K · 肉与非肉</text>
+        <text x="60" y="319" fill="#64748b" font-size="8">课4–5 — 级别保障 · 肉眼判定 · 取值规则</text>
+
+        <rect x="45" y="340" width="370" height="42" rx="5" fill="rgba(8, 51, 68, 0.2)" stroke="#22d3ee" stroke-width="1"/>
+        <text x="60" y="358" fill="#e2e8f0" font-size="10" font-weight="600">中枢唯一选取</text>
+        <text x="60" y="373" fill="#64748b" font-size="8">课6–9 — 三法则 · k0/k刷新 · 延伸重组</text>
+
+        <rect x="45" y="394" width="370" height="42" rx="5" fill="rgba(8, 51, 68, 0.2)" stroke="#22d3ee" stroke-width="1"/>
+        <text x="60" y="412" fill="#e2e8f0" font-size="10" font-weight="600">顶底与线段唯一</text>
+        <text x="60" y="427" fill="#64748b" font-size="8">课10–15 — 四法则 · 转折K · 终唯一</text>
+
+        <!-- S1 stats -->
+        <text x="230" y="466" fill="#475569" font-size="9" text-anchor="middle">15 课 ｜ 4 概念页 ｜ 线段中枢 → 顶底 → 线段</text>
+
+        <!-- ===== STAGE 2: 二阶段 ===== -->
+        <rect x="460" y="130" width="430" height="32" rx="6" fill="rgba(6, 78, 59, 0.3)" stroke="#34d399" stroke-width="1.5"/>
+        <text x="675" y="151" fill="#34d399" font-size="11" font-weight="700" text-anchor="middle">二阶段 · 职业交易 (课 16–45)</text>
+
+        <!-- S2 Boxes -->
+        <rect x="475" y="178" width="400" height="42" rx="5" fill="rgba(6, 78, 59, 0.2)" stroke="#34d399" stroke-width="1"/>
+        <text x="490" y="196" fill="#e2e8f0" font-size="10" font-weight="600">结构入门 · 日线级别线段</text>
+        <text x="490" y="211" fill="#64748b" font-size="8">课16–17 — 中枢上轨 · 四条件 · 走势分类起点</text>
+
+        <rect x="475" y="232" width="400" height="42" rx="5" fill="rgba(6, 78, 59, 0.2)" stroke="#34d399" stroke-width="1"/>
+        <text x="490" y="250" fill="#e2e8f0" font-size="10" font-weight="600">本质走势中枢</text>
+        <text x="490" y="265" fill="#64748b" font-size="8">课18–23 — 34均线重叠 · 唯一取值 · 融汇精炼</text>
+
+        <rect x="475" y="286" width="400" height="42" rx="5" fill="rgba(6, 78, 59, 0.2)" stroke="#34d399" stroke-width="1"/>
+        <text x="490" y="304" fill="#e2e8f0" font-size="10" font-weight="600">交易灵魂 · 级别唯一判定</text>
+        <text x="490" y="319" fill="#64748b" font-size="8">课24–25 — 资金安全/利用率 · 级别匹配</text>
+
+        <rect x="475" y="340" width="400" height="42" rx="5" fill="rgba(6, 78, 59, 0.2)" stroke="#34d399" stroke-width="1"/>
+        <text x="490" y="358" fill="#e2e8f0" font-size="10" font-weight="600">独立 · 周线级别中枢</text>
+        <text x="490" y="373" fill="#64748b" font-size="8">课26–30 — 三种独立 · 170均线 · 两种交易类型</text>
+
+        <rect x="475" y="394" width="400" height="42" rx="5" fill="rgba(6, 78, 59, 0.2)" stroke="#34d399" stroke-width="1"/>
+        <text x="490" y="412" fill="#e2e8f0" font-size="10" font-weight="600">走势分类 · 走势终完美</text>
+        <text x="490" y="427" fill="#64748b" font-size="8">课31–34 — 分组结构 · 看多量化 · 思维做减法</text>
+
+        <!-- S2: 买点体系 (larger box) -->
+        <rect x="475" y="448" width="400" height="58" rx="5" fill="rgba(6, 78, 59, 0.3)" stroke="#34d399" stroke-width="1.5"/>
+        <text x="490" y="468" fill="#34d399" font-size="11" font-weight="700">🎯 买点体系</text>
+        <text x="490" y="486" fill="#94a3b8" font-size="8">课35–45 · 进攻买一/二 · 防守买一/二 · 进三 · 买点真相</text>
+        <text x="490" y="499" fill="#64748b" font-size="8">安全边际 · 核心驱动 · 线段终结 · 重结构轻信号</text>
+        <text x="860" y="486" fill="#475569" font-size="8" text-anchor="end">→ strategy</text>
+
+        <!-- S2 stats -->
+        <text x="675" y="536" fill="#475569" font-size="9" text-anchor="middle">30 课 ｜ 2 策略页 ｜ 结构 → 走势 → 买点</text>
+
+        <!-- ===== STAGE 3: 三阶段 ===== -->
+        <rect x="920" y="130" width="400" height="32" rx="6" fill="rgba(76, 29, 149, 0.3)" stroke="#a78bfa" stroke-width="1.5"/>
+        <text x="1120" y="151" fill="#a78bfa" font-size="11" font-weight="700" text-anchor="middle">三阶段 · 认知实战 (课 46–53)</text>
+
+        <!-- S3 Boxes -->
+        <rect x="935" y="178" width="370" height="48" rx="5" fill="rgba(76, 29, 149, 0.2)" stroke="#a78bfa" stroke-width="1"/>
+        <text x="950" y="196" fill="#e2e8f0" font-size="10" font-weight="600">选股与亏钱真相</text>
+        <text x="950" y="213" fill="#64748b" font-size="8">课46–47 — 资金体系 · 核心驱动 · 鱼池→龙门→化龙</text>
+
+        <rect x="935" y="238" width="370" height="48" rx="5" fill="rgba(76, 29, 149, 0.2)" stroke="#a78bfa" stroke-width="1"/>
+        <text x="950" y="256" fill="#e2e8f0" font-size="10" font-weight="600">卖点与卖飞真相</text>
+        <text x="950" y="273" fill="#64748b" font-size="8">课48–49 — 主动/被动卖点 · 做T ≠ 滚动 · 50% 仓位</text>
+
+        <rect x="935" y="298" width="370" height="48" rx="5" fill="rgba(76, 29, 149, 0.2)" stroke="#a78bfa" stroke-width="1"/>
+        <text x="950" y="316" fill="#e2e8f0" font-size="10" font-weight="600">资管与大盘真相</text>
+        <text x="950" y="333" fill="#64748b" font-size="8">课50–51 — 零成本 · 2%止损 · 大盘=温度计</text>
+
+        <rect x="935" y="358" width="370" height="48" rx="5" fill="rgba(76, 29, 149, 0.2)" stroke="#a78bfa" stroke-width="1"/>
+        <text x="950" y="376" fill="#e2e8f0" font-size="10" font-weight="600">复盘秘密 · 思维源头</text>
+        <text x="950" y="393" fill="#64748b" font-size="8">课52–53 — 7步复盘 · 操作日志 · 告别</text>
+
+        <!-- S3 stats -->
+        <text x="1120" y="436" fill="#475569" font-size="9" text-anchor="middle">8 课 ｜ 认知升维 ｜ 选股 → 卖点 → 风控</text>
+
+        <!-- ===== SECTION DIVIDER ===== -->
+        <line x1="30" y1="480" x2="1320" y2="480" stroke="#1e293b" stroke-width="1" stroke-dasharray="4,4"/>
+
+        <!-- ===== BOTTOM SECTION HEADER ===== -->
+        <text x="675" y="510" fill="#475569" font-size="10" font-weight="600" text-anchor="middle">— 知识库扩展维度 —</text>
+
+        <!-- ===== CONCEPTS SECTION ===== -->
+        <rect x="30" y="528" width="400" height="28" rx="5" fill="rgba(251, 191, 36, 0.15)" stroke="#fbbf24" stroke-width="1"/>
+        <text x="230" y="547" fill="#fbbf24" font-size="10" font-weight="700" text-anchor="middle">📚 概念 · Concepts (4 页)</text>
+
+        <rect x="30" y="566" width="400" height="90" rx="5" fill="rgba(120, 53, 15, 0.12)" stroke="#fbbf24" stroke-width="0.5"/>
+        <text x="50" y="586" fill="#e2e8f0" font-size="9">• 中枢线与 k0–k 体系</text>
+        <text x="50" y="604" fill="#e2e8f0" font-size="9">• 起手三式（反正两穿 · 三笔 · 5k 重叠）</text>
+        <text x="50" y="622" fill="#e2e8f0" font-size="9">• 黑K与肉非肉（级别保障 · 肉眼判定）</text>
+        <text x="50" y="640" fill="#e2e8f0" font-size="9">• 线段中枢唯一选取（动态分析）</text>
+
+        <!-- ===== STRATEGIES SECTION ===== -->
+        <rect x="460" y="528" width="430" height="28" rx="5" fill="rgba(136, 19, 55, 0.15)" stroke="#fb7185" stroke-width="1"/>
+        <text x="675" y="547" fill="#fb7185" font-size="10" font-weight="700" text-anchor="middle">🎯 策略 · Strategies (2 页)</text>
+
+        <rect x="460" y="566" width="430" height="90" rx="5" fill="rgba(136, 19, 55, 0.08)" stroke="#fb7185" stroke-width="0.5"/>
+        <text x="480" y="586" fill="#e2e8f0" font-size="9">• 买点体系：进攻买一/二 · 防守买一/二 · 进三</text>
+        <text x="480" y="604" fill="#64748b" font-size="8">  安全边际 · 核心驱动 · 线段终结 · 重结构轻信号</text>
+        <text x="480" y="626" fill="#e2e8f0" font-size="9">• 卖点与资金管理：主动/被动卖点 · 仓位配置</text>
+        <text x="480" y="644" fill="#64748b" font-size="8">  零成本 · 2%止损 · 股数不变 · 操作表格</text>
+
+        <!-- ===== REPORTS SECTION ===== -->
+        <rect x="920" y="528" width="400" height="28" rx="5" fill="rgba(30, 41, 59, 0.4)" stroke="#94a3b8" stroke-width="1"/>
+        <text x="1120" y="547" fill="#94a3b8" font-size="10" font-weight="700" text-anchor="middle">📊 报告 · Reports (3 页)</text>
+
+        <rect x="920" y="566" width="400" height="90" rx="5" fill="rgba(30, 41, 59, 0.3)" stroke="#94a3b8" stroke-width="0.5"/>
+        <text x="940" y="586" fill="#e2e8f0" font-size="9">• 大盘实战笔记 · 总览</text>
+        <text x="940" y="606" fill="#e2e8f0" font-size="9">• 市场状态演变 (77 条时间线)</text>
+        <text x="940" y="626" fill="#e2e8f0" font-size="9">• 分析框架提炼</text>
+        <text x="940" y="646" fill="#64748b" font-size="8">  级别/结构/关键点位/仓位/板块/操作哲学</text>
+
+        <!-- ===== CROSS-REFERENCE ARROWS (bottom section) ===== -->
+        <!-- Concepts → Stage 1 -->
+        <path d="M 430 620 L 440 620 L 440 448 L 400 448" fill="none" stroke="#fbbf24" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrow-am)"/>
+        <text x="442" y="540" fill="#fbbf24" font-size="7">基础支撑</text>
+
+        <!-- Strategies ← Stage 2 -->
+        <path d="M 460 620 L 450 620 L 450 480 L 420 480" fill="none" stroke="#fb7185" stroke-width="1" stroke-dasharray="4,3"/>
+
+        <!-- Stage 3 → Reports -->
+        <path d="M 1100 430 L 1100 528" fill="none" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrow-sl)"/>
+        <text x="1110" y="490" fill="#94a3b8" font-size="7">实战沉淀</text>
+
+        <!-- ===== LEGEND ===== -->
+        <rect x="30" y="690" width="1320" height="72" rx="6" fill="rgba(15, 23, 42, 0.4)" stroke="#1e293b" stroke-width="0.5"/>
+        <text x="50" y="714" fill="#94a3b8" font-size="9" font-weight="600">图例</text>
+
+        <rect x="120" y="702" width="14" height="10" rx="2" fill="rgba(8, 51, 68, 0.5)" stroke="#22d3ee" stroke-width="1"/>
+        <text x="140" y="711" fill="#94a3b8" font-size="8">一阶段 · 本质线段</text>
+
+        <rect x="320" y="702" width="14" height="10" rx="2" fill="rgba(6, 78, 59, 0.4)" stroke="#34d399" stroke-width="1"/>
+        <text x="340" y="711" fill="#94a3b8" font-size="8">二阶段 · 职业交易</text>
+
+        <rect x="520" y="702" width="14" height="10" rx="2" fill="rgba(76, 29, 149, 0.4)" stroke="#a78bfa" stroke-width="1"/>
+        <text x="540" y="711" fill="#94a3b8" font-size="8">三阶段 · 认知实战</text>
+
+        <rect x="720" y="702" width="14" height="10" rx="2" fill="rgba(120, 53, 15, 0.3)" stroke="#fbbf24" stroke-width="1"/>
+        <text x="740" y="711" fill="#94a3b8" font-size="8">概念 · Concepts</text>
+
+        <rect x="920" y="702" width="14" height="10" rx="2" fill="rgba(136, 19, 55, 0.4)" stroke="#fb7185" stroke-width="1"/>
+        <text x="940" y="711" fill="#94a3b8" font-size="8">策略 · Strategies</text>
+
+        <rect x="1100" y="702" width="14" height="10" rx="2" fill="rgba(30, 41, 59, 0.5)" stroke="#94a3b8" stroke-width="1"/>
+        <text x="1120" y="711" fill="#94a3b8" font-size="8">报告 · Reports</text>
+
+        <text x="50" y="754" fill="#475569" font-size="8">⸻ 实线箭头 = 递进关系 ｜ 虚线 = 交叉引用 ｜ → concept / → strategy / → report = 对应扩展页</text>
+
+        <!-- ===== FILE COUNTS ===== -->
+        <text x="1330" y="815" fill="#1e293b" font-size="8" text-anchor="end">wiki/**/*.md × 61</text>
+
+        <!-- ===== STATS BAR ===== -->
+        <rect x="30" y="790" width="1320" height="36" rx="6" fill="rgba(15, 23, 42, 0.3)" stroke="#1e293b" stroke-width="0.5"/>
+
+        <text x="150" y="812" fill="#22d3ee" font-size="12" font-weight="700" text-anchor="middle">53</text>
+        <text x="150" y="822" fill="#475569" font-size="7" text-anchor="middle">课程页</text>
+
+        <text x="310" y="812" fill="#fbbf24" font-size="12" font-weight="700" text-anchor="middle">4</text>
+        <text x="310" y="822" fill="#475569" font-size="7" text-anchor="middle">概念页</text>
+
+        <text x="470" y="812" fill="#fb7185" font-size="12" font-weight="700" text-anchor="middle">2</text>
+        <text x="470" y="822" fill="#475569" font-size="7" text-anchor="middle">策略页</text>
+
+        <text x="630" y="812" fill="#94a3b8" font-size="12" font-weight="700" text-anchor="middle">3</text>
+        <text x="630" y="822" fill="#475569" font-size="7" text-anchor="middle">报告页</text>
+
+        <text x="830" y="812" fill="#34d399" font-size="12" font-weight="700" text-anchor="middle">15+30+8</text>
+        <text x="830" y="822" fill="#475569" font-size="7" text-anchor="middle">课/阶段</text>
+
+        <text x="1050" y="812" fill="#a78bfa" font-size="12" font-weight="700" text-anchor="middle">77</text>
+        <text x="1050" y="822" fill="#475569" font-size="7" text-anchor="middle">大盘分析记录</text>
+
+        <text x="1250" y="812" fill="#64748b" font-size="12" font-weight="700" text-anchor="middle">2026-05-02</text>
+        <text x="1250" y="822" fill="#475569" font-size="7" text-anchor="middle">最后更新</text>
+
+        <!-- Decorative dots -->
+        <circle cx="55" cy="45" r="2" fill="#22d3ee" opacity="0.3"/>
+        <circle cx="1295" cy="45" r="2" fill="#22d3ee" opacity="0.3"/>
+        <circle cx="55" cy="900" r="2" fill="#22d3ee" opacity="0.3"/>
+        <circle cx="1295" cy="900" r="2" fill="#22d3ee" opacity="0.3"/>
+      </svg>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="cards">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot cyan"></div>
+          <h3>一阶段 · 本质线段</h3>
+        </div>
+        <ul>
+          <li>• 课1–15：中枢线 → 中枢构成 → 唯一选取</li>
+          <li>• 顶底四法则 + 转折K动态刷新</li>
+          <li>• 线段终极唯一：一图一画</li>
+          <li>• 4 个概念页支撑底层认知</li>
+          <li>• 看线段的能力 = 看走势的起点</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot emerald"></div>
+          <h3>二阶段 · 职业交易</h3>
+        </div>
+        <ul>
+          <li>• 课16–45：结构 → 走势分类 → 买点</li>
+          <li>• 5 类职业买点：进一/进二/防一/防二/进三</li>
+          <li>• 核心原则：重结构轻信号</li>
+          <li>• 2 个策略页：买点体系 + 卖点资金管理</li>
+          <li>• 交易灵魂：资金安全 + 利用率</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot violet"></div>
+          <h3>三阶段 · 认知实战</h3>
+        </div>
+        <ul>
+          <li>• 课46–53：选股 → 卖点 → 风控 → 复盘</li>
+          <li>• 7 步复盘表格 + 操作日志体系</li>
+          <li>• 3 篇报告：77 次大盘分析沉淀</li>
+          <li>• 思维源头：职业交易者心法</li>
+          <li>• 大盘=温度计，择时辅助优选</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="footer">
+      股票资料库 · 摩尔缠论高三课程体系 · LLM-Wiki 知识库 · /wiki/**/*.md × 61
+    </p>
+  </div>
+</body>
+</html>
